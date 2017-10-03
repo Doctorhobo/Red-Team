@@ -1,0 +1,4 @@
+﻿  DataDumpUI.cpp
+  DataDumpUI.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  DataDump.vcxproj -> C:\Users\adamm\Desktop\CS2450\DataDump_CPP\DataDump\Debug\DataDump.exe
+  DataDump.vcxproj -> C:\Users\adamm\Desktop\CS2450\DataDump_CPP\DataDump\Debug\DataDump.pdb (Partial PDB)
