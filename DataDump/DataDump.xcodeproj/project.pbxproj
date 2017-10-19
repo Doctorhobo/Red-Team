@@ -27,7 +27,7 @@
 		B6D6F3C51F717B8000A5B946 /* DataDump */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataDump; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D6F3C81F717B8000A5B946 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B6D6F3CF1F717C1300A5B946 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
-		B6D6F3D01F717C1300A5B946 /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
+		B6D6F3D01F717C1300A5B946 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 			children = (
 				B6D6F3C81F717B8000A5B946 /* main.cpp */,
 				B6D6F3CF1F717C1300A5B946 /* FileManager.cpp */,
-				B6D6F3D01F717C1300A5B946 /* FileManager.hpp */,
+				B6D6F3D01F717C1300A5B946 /* FileManager.h */,
 			);
 			path = DataDump;
 			sourceTree = "<group>";
@@ -257,6 +257,7 @@
 				B6D6F3CE1F717B8000A5B946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
