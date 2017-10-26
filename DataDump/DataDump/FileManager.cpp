@@ -69,7 +69,7 @@ vector< string > FileManager::GetHexFileContents(int byteGroupSize) {
     
     if (byteGroupSize > 0 == false) {
         cout << "byte group size must be a positive integer." << endl;
-        exit(0);
+        return vector< string >();
     }
     
     vector<string> bytesAsStrings = vector<string>();
@@ -95,7 +95,7 @@ vector< string > FileManager::GetBinaryFileContents(int byteGroupSize) {
     
     if (byteGroupSize > 0 == false) {
         cout << "byte group size must be a positive integer." << endl;
-        exit(0);
+        return vector< string >();
     }
     
     vector<string> bytesAsStrings = vector<string>();
@@ -119,7 +119,7 @@ std::string FileManager::GetAsciiForRange(long startIndex, long endIndex) {
     
     if (startIndex > endIndex) {
         cout << "start index must be before end index." << endl;
-        exit(0);
+        return "";
     }
     
     if (startIndex < 0) {
@@ -148,7 +148,7 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
     
     if (startIndex > endIndex) {
         cout << "start index must be before end index." << endl;
-        exit(0);
+        return vector< double >();
     }
     
     if (startIndex < 0) {
@@ -161,12 +161,12 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
     
     if (is64Bit && (startIndex % BYTES_IN_64_BITS != 0 || (endIndex + 1) % BYTES_IN_64_BITS != 0)) {
         cout << "Both indexes must be some increment of 64 bits if you choose 64 bits" << endl;
-        exit(0);
+        return vector< double >();
     }
     
     if (is64Bit == false && (startIndex % BYTES_IN_32_BITS != 0 || (endIndex + 1) % BYTES_IN_32_BITS != 0)) {
         cout << "Both indexes must be some increment of 32 bits if you choose 32 bits" << endl;
-        exit(0);
+        return vector< double >();
     }
     
     if (is64Bit) {
@@ -174,10 +174,14 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
         endIndex = (endIndex + 1) / BYTES_IN_64_BITS;
         
         for (long i = startIndex; i < endIndex; i++) {
-            if (isLittleEndian) {
-                timeStamps.push_back(doubleBuffer[i]);
-            } else {
-                timeStamps.push_back(changeEndian(doubleBuffer[i]));
+            double timeStamp = doubleBuffer[i];
+            
+            if (timeStamp > 0 && timeStamp < maxTimeStamp) {
+                if (isLittleEndian) {
+                    timeStamps.push_back(timeStamp);
+                } else {
+                    timeStamps.push_back(changeEndian(timeStamp));
+                }
             }
         }
         
@@ -186,10 +190,15 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
         endIndex = (endIndex + 1) / BYTES_IN_32_BITS;
         
         for (long i = startIndex; i < endIndex; i++) {
-            if (isLittleEndian) {
-                timeStamps.push_back(floatBuffer[i]);
-            } else {
-                timeStamps.push_back(changeEndian(floatBuffer[i]));
+            
+            double timeStamp = doubleBuffer[i];
+            
+            if (timeStamp > 0 && timeStamp < maxTimeStamp) {
+                if (isLittleEndian) {
+                    timeStamps.push_back(timeStamp);
+                } else {
+                    timeStamps.push_back(changeEndian(timeStamp));
+                }
             }
         }
     }
