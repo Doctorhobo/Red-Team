@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 //    manager.PrintFile();
 //    std::cout << manager.GetBinaryFileContents() ;
 //    std::cout << manager.GetAsciiForRange(0, 5000);
-    std::vector<double> v = manager.GetTimeStampsForRange(0, 31, 0, true, false);
+    std::vector<double> v = manager.GetTimeStampsForRange(0, 127, 9e200, false, true);
     std::vector<std::string> hex = manager.GetHexFileContents(4);
     std::vector<std::string> binary = manager.GetBinaryFileContents(1);
     

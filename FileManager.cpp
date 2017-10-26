@@ -174,13 +174,18 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
         endIndex = (endIndex + 1) / BYTES_IN_64_BITS;
         
         for (long i = startIndex; i < endIndex; i++) {
-            double timeStamp = doubleBuffer[i];
-            
-            if (timeStamp > 0 && timeStamp < maxTimeStamp) {
-                if (isLittleEndian) {
+            if (isLittleEndian) {
+                double timeStamp = doubleBuffer[i];
+                
+                if (timeStamp >= 0 && timeStamp <= maxTimeStamp) {
                     timeStamps.push_back(timeStamp);
-                } else {
-                    timeStamps.push_back(changeEndian(timeStamp));
+                }
+                
+            } else {
+                double timeStamp = changeEndian(doubleBuffer[i]);
+                
+                if (timeStamp >= 0 && timeStamp <= maxTimeStamp) {
+                    timeStamps.push_back(timeStamp);
                 }
             }
         }
@@ -190,14 +195,18 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
         endIndex = (endIndex + 1) / BYTES_IN_32_BITS;
         
         for (long i = startIndex; i < endIndex; i++) {
-            
-            double timeStamp = doubleBuffer[i];
-            
-            if (timeStamp > 0 && timeStamp < maxTimeStamp) {
-                if (isLittleEndian) {
+            if (isLittleEndian) {
+                float timeStamp = floatBuffer[i];
+                
+                if (timeStamp >= 0 && timeStamp <= maxTimeStamp) {
                     timeStamps.push_back(timeStamp);
-                } else {
-                    timeStamps.push_back(changeEndian(timeStamp));
+                }
+                
+            } else {
+                double timeStamp = changeEndian(floatBuffer[i]);
+                
+                if (timeStamp >= 0 && timeStamp <= maxTimeStamp) {
+                    timeStamps.push_back(timeStamp);
                 }
             }
         }
@@ -205,4 +214,3 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
     
     return timeStamps;
 }
-
