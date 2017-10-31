@@ -12,12 +12,12 @@
 #include <iomanip>
 #include <sstream>
 #include <bitset>
-
 using namespace std;
 
 
-double changeEndian(double in)
-{
+// MARK: - Utility Functions
+
+double changeEndian(double in) {
     char* const p = reinterpret_cast<char*>(&in);
     for (size_t i = 0; i < sizeof(double) / 2; ++i)
         std::swap(p[i], p[sizeof(double) - i - 1]);
@@ -25,14 +25,16 @@ double changeEndian(double in)
     return in;
 }
 
-float changeEndian(float in)
-{
+float changeEndian(float in) {
     char* const p = reinterpret_cast<char*>(&in);
     for (size_t i = 0; i < sizeof(float) / 2; ++i)
         std::swap(p[i], p[sizeof(float) - i - 1]);
     
     return in;
 }
+
+
+// MARK: - Class Methods
 
 FileManager::FileManager(const std::string fileName) {
     
@@ -214,3 +216,4 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
     
     return timeStamps;
 }
+

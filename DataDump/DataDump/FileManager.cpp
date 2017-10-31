@@ -5,6 +5,7 @@
 //  Created by Donald Timpson on 9/19/17.
 //  Copyright © 2017 Donald Timpson. All rights reserved.
 //
+// Documentation for using file is located in ehader file.
 
 #include "FileManager.h"
 #include <iostream>
@@ -12,12 +13,15 @@
 #include <iomanip>
 #include <sstream>
 #include <bitset>
-
 using namespace std;
 
 
-double changeEndian(double in)
-{
+// MARK: - Utility Functions
+
+// Function for convertine the endian of some double value.
+// Input: 'in' double value to change the enian of.
+// Output: double with endian changed
+double changeEndian(double in) {
     char* const p = reinterpret_cast<char*>(&in);
     for (size_t i = 0; i < sizeof(double) / 2; ++i)
         std::swap(p[i], p[sizeof(double) - i - 1]);
@@ -25,8 +29,10 @@ double changeEndian(double in)
     return in;
 }
 
-float changeEndian(float in)
-{
+// Method for convertine the endian of some float value.
+// Input: 'in' float value to change the enian of.
+// Output: float with endian changed
+float changeEndian(float in) {
     char* const p = reinterpret_cast<char*>(&in);
     for (size_t i = 0; i < sizeof(float) / 2; ++i)
         std::swap(p[i], p[sizeof(float) - i - 1]);
@@ -34,10 +40,14 @@ float changeEndian(float in)
     return in;
 }
 
+
+// MARK: - Class Methods
+
 FileManager::FileManager(const std::string fileName) {
     
+    // Read in file to 'buffer'
     ifstream file (fileName, ios::in|ios::binary|ios::ate);
-    this->size = file.tellg();
+    this->size = (long) file.tellg();
     file.seekg(0, ios::beg);
     
     this->buffer = new u_char[this->size];
@@ -45,11 +55,13 @@ FileManager::FileManager(const std::string fileName) {
     file.read((char *)this->buffer, this->size);
     file.close();
     
+    // Create 64 bit and 32 bit representations of 'buffer'
     this->doubleBuffer = (double*) this->buffer;
     this->floatBuffer = (float*) this->buffer;
 }
 
 FileManager::~FileManager() {
+    // Clear all buffers
     delete[] this->buffer;
     delete[] this->doubleBuffer;
     delete[] this->floatBuffer;
@@ -59,6 +71,7 @@ void FileManager::PrintFile() {
     for (long i = 0; i < this->size; i++) {
         cout << setfill ('0') << setw(2) << hex << (uint) this->buffer[i];
         
+        // Hard coded to print 4 bytes at a time since that seeems to be the standard.
         if ((i + 1) % 4 == 0) {
             cout << endl;
         }
@@ -77,6 +90,7 @@ vector< string > FileManager::GetHexFileContents(int byteGroupSize) {
     for (long i = 0; i < this->size; i++) {
         string byteString = "";
         
+        // Group output into the desired number of bytes
         for (long j = i; j < i + byteGroupSize; j++) {
             stringstream stream;
             stream << setfill ('0') << setw(2) << hex << (uint) this->buffer[j];
@@ -102,7 +116,7 @@ vector< string > FileManager::GetBinaryFileContents(int byteGroupSize) {
     
     for (long i = 0; i < this->size; i++) {
         string byteString = "";
-        
+         // Group the output into the desired number of bytes
         for (long j = i; j < i + byteGroupSize; j++) {
             string result = bitset<8>( (uint) this->buffer[j] ).to_string();
             byteString.append(result);
@@ -190,7 +204,7 @@ vector<double> FileManager::GetTimeStampsForRange(long startIndex, long endIndex
             }
         }
         
-    } else {
+    } else { // is 32 bit
         startIndex = startIndex / BYTES_IN_32_BITS;
         endIndex = (endIndex + 1) / BYTES_IN_32_BITS;
         
