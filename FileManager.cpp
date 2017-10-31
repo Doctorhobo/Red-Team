@@ -16,6 +16,7 @@
 using namespace std;
 
 
+
 double changeEndian(double in)
 {
     char* const p = reinterpret_cast<char*>(&in);
@@ -34,7 +35,14 @@ float changeEndian(float in)
     return in;
 }
 
-FileManager::FileManager(const std::string fileName) {
+FileManager::FileManager() {
+	buffer = 0;
+	size = 0;
+	floatBuffer = 0;
+	doubleBuffer = 0;
+}
+
+FileManager::FileManager( std::string fileName) {
     
     ifstream file (fileName, ios::in|ios::binary|ios::ate);
     this->size = file.tellg();

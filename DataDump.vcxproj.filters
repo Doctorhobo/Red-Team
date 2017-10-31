@@ -18,9 +18,18 @@
     <ClCompile Include="DataDumpUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataDumpUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="strings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -33,5 +42,13 @@
     <EmbeddedResource Include="DataDumpUI.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FileManager.cpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="FileManager.h">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

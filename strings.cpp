@@ -1,4 +1,4 @@
-#include "strings.hpp"
+#include "strings.h"
 
 std::string stdString(System::String^ sysS)
 {

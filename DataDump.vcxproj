@@ -135,11 +135,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataDumpUI.cpp" />
+    <ClCompile Include="strings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataDumpUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="strings.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="favicon.ico" />

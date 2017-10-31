@@ -14,10 +14,15 @@
 #include <vector>
 #include <iomanip>
 
+#include "types.h"
+
 class FileManager {
 public:
-    // Constructs a file manager with a binary file as input.
-    FileManager(const std::string fileName);
+
+	FileManager();
+    
+	// Constructs a file manager with a binary file as input.
+    FileManager(std::string fileName);
     
     // Deletes all buffers.
     ~FileManager();

@@ -1,5 +1,11 @@
 #pragma once
 
+//#include "FileManager.h"
+#include "strings.h"
+#include "types.h"
+
+
+
 namespace DataDump {
 
 	using namespace System;
@@ -22,11 +28,20 @@ namespace DataDump {
 			//TODO: Add the constructor code here
 			//
 		}
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripSeparator1;
+
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::NumericUpDown^  numOffsetAmount;
+
+	public:
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
+
+		System::String^ filename;
+
 		~DataDumpUI()
 		{
 			if (components)
@@ -38,25 +53,32 @@ namespace DataDump {
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  openToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  saveAsToolStripMenuItem;
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  editToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  undoToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  redoToolStripMenuItem;
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^  copyToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  pasteToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  aboutToolStripMenuItem;
 	private: System::Windows::Forms::GroupBox^  groupBox1;
-	private: System::Windows::Forms::RadioButton^  radioButton2;
-	private: System::Windows::Forms::RadioButton^  radioButton1;
+	private: System::Windows::Forms::RadioButton^  rdoBin;
+
+	private: System::Windows::Forms::RadioButton^  rdoHex;
+
 	private: System::Windows::Forms::GroupBox^  groupBox2;
-	private: System::Windows::Forms::RadioButton^  radioButton4;
-	private: System::Windows::Forms::RadioButton^  radioButton3;
+	private: System::Windows::Forms::RadioButton^  rdo64;
+
+	private: System::Windows::Forms::RadioButton^  rdo32;
+
+
 	private: System::Windows::Forms::GroupBox^  groupBox3;
-	private: System::Windows::Forms::RadioButton^  radioButton6;
-	private: System::Windows::Forms::RadioButton^  radioButton5;
+	private: System::Windows::Forms::RadioButton^  rdoLE;
+
+	private: System::Windows::Forms::RadioButton^  rdoBE;
+
 
 	private: System::Windows::Forms::Label^  label1;
 
@@ -64,11 +86,15 @@ namespace DataDump {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::ComboBox^  cmb_epoch;
-	private: System::Windows::Forms::RichTextBox^  richTextBox1;
-	private: System::Windows::Forms::RichTextBox^  richTextBox2;
-	private: System::Windows::Forms::RichTextBox^  richTextBox3;
+	private: System::Windows::Forms::RichTextBox^  txtOffset;
+	private: System::Windows::Forms::RichTextBox^  txtASCII;
+
+
+	private: System::Windows::Forms::RichTextBox^  txtData;
+
 	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  btnStartInterpret;
+
 
 
 	private:
@@ -88,38 +114,38 @@ namespace DataDump {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->saveAsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->undoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->redoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->copyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->pasteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->rdoBin = (gcnew System::Windows::Forms::RadioButton());
+			this->rdoHex = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->rdo64 = (gcnew System::Windows::Forms::RadioButton());
+			this->rdo32 = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButton6 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
+			this->rdoLE = (gcnew System::Windows::Forms::RadioButton());
+			this->rdoBE = (gcnew System::Windows::Forms::RadioButton());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->cmb_epoch = (gcnew System::Windows::Forms::ComboBox());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox3 = (gcnew System::Windows::Forms::RichTextBox());
+			this->txtOffset = (gcnew System::Windows::Forms::RichTextBox());
+			this->txtASCII = (gcnew System::Windows::Forms::RichTextBox());
+			this->txtData = (gcnew System::Windows::Forms::RichTextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnStartInterpret = (gcnew System::Windows::Forms::Button());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->numOffsetAmount = (gcnew System::Windows::Forms::NumericUpDown());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numOffsetAmount))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -136,9 +162,9 @@ namespace DataDump {
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->openToolStripMenuItem,
-					this->saveToolStripMenuItem, this->saveAsToolStripMenuItem, this->exitToolStripMenuItem
+					this->toolStripSeparator1, this->exitToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
@@ -148,54 +174,32 @@ namespace DataDump {
 			// 
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
 			this->openToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::O));
-			this->openToolStripMenuItem->Size = System::Drawing::Size(195, 22);
+			this->openToolStripMenuItem->Size = System::Drawing::Size(146, 22);
 			this->openToolStripMenuItem->Text = L"Open";
+			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &DataDumpUI::openToolStripMenuItem_Click);
 			// 
-			// saveToolStripMenuItem
+			// toolStripSeparator1
 			// 
-			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::S));
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(195, 22);
-			this->saveToolStripMenuItem->Text = L"Save";
-			// 
-			// saveAsToolStripMenuItem
-			// 
-			this->saveAsToolStripMenuItem->Name = L"saveAsToolStripMenuItem";
-			this->saveAsToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>(((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::Shift)
-				| System::Windows::Forms::Keys::S));
-			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(195, 22);
-			this->saveAsToolStripMenuItem->Text = L"Save As...";
+			this->toolStripSeparator1->Name = L"toolStripSeparator1";
+			this->toolStripSeparator1->Size = System::Drawing::Size(143, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
 			this->exitToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Alt | System::Windows::Forms::Keys::F4));
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(195, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(146, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
+			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &DataDumpUI::exitToolStripMenuItem_Click);
 			// 
 			// editToolStripMenuItem
 			// 
-			this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
-				this->undoToolStripMenuItem,
-					this->redoToolStripMenuItem, this->copyToolStripMenuItem, this->pasteToolStripMenuItem
+			this->editToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->copyToolStripMenuItem,
+					this->pasteToolStripMenuItem
 			});
 			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
 			this->editToolStripMenuItem->Size = System::Drawing::Size(39, 20);
 			this->editToolStripMenuItem->Text = L"Edit";
-			// 
-			// undoToolStripMenuItem
-			// 
-			this->undoToolStripMenuItem->Name = L"undoToolStripMenuItem";
-			this->undoToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::Z));
-			this->undoToolStripMenuItem->Size = System::Drawing::Size(144, 22);
-			this->undoToolStripMenuItem->Text = L"Undo";
-			// 
-			// redoToolStripMenuItem
-			// 
-			this->redoToolStripMenuItem->Name = L"redoToolStripMenuItem";
-			this->redoToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::Y));
-			this->redoToolStripMenuItem->Size = System::Drawing::Size(144, 22);
-			this->redoToolStripMenuItem->Text = L"Redo";
 			// 
 			// copyToolStripMenuItem
 			// 
@@ -206,6 +210,7 @@ namespace DataDump {
 			// 
 			// pasteToolStripMenuItem
 			// 
+			this->pasteToolStripMenuItem->Enabled = false;
 			this->pasteToolStripMenuItem->Name = L"pasteToolStripMenuItem";
 			this->pasteToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::V));
 			this->pasteToolStripMenuItem->Size = System::Drawing::Size(144, 22);
@@ -227,8 +232,8 @@ namespace DataDump {
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->radioButton2);
-			this->groupBox1->Controls->Add(this->radioButton1);
+			this->groupBox1->Controls->Add(this->rdoBin);
+			this->groupBox1->Controls->Add(this->rdoHex);
 			this->groupBox1->Location = System::Drawing::Point(12, 27);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(108, 73);
@@ -236,32 +241,32 @@ namespace DataDump {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Display";
 			// 
-			// radioButton2
+			// rdoBin
 			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(7, 44);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(54, 17);
-			this->radioButton2->TabIndex = 1;
-			this->radioButton2->Text = L"Binary";
-			this->radioButton2->UseVisualStyleBackColor = true;
+			this->rdoBin->AutoSize = true;
+			this->rdoBin->Location = System::Drawing::Point(7, 44);
+			this->rdoBin->Name = L"rdoBin";
+			this->rdoBin->Size = System::Drawing::Size(54, 17);
+			this->rdoBin->TabIndex = 1;
+			this->rdoBin->Text = L"Binary";
+			this->rdoBin->UseVisualStyleBackColor = true;
 			// 
-			// radioButton1
+			// rdoHex
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Checked = true;
-			this->radioButton1->Location = System::Drawing::Point(7, 20);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(86, 17);
-			this->radioButton1->TabIndex = 0;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"Hexadecimal";
-			this->radioButton1->UseVisualStyleBackColor = true;
+			this->rdoHex->AutoSize = true;
+			this->rdoHex->Checked = true;
+			this->rdoHex->Location = System::Drawing::Point(7, 20);
+			this->rdoHex->Name = L"rdoHex";
+			this->rdoHex->Size = System::Drawing::Size(86, 17);
+			this->rdoHex->TabIndex = 0;
+			this->rdoHex->TabStop = true;
+			this->rdoHex->Text = L"Hexadecimal";
+			this->rdoHex->UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->radioButton4);
-			this->groupBox2->Controls->Add(this->radioButton3);
+			this->groupBox2->Controls->Add(this->rdo64);
+			this->groupBox2->Controls->Add(this->rdo32);
 			this->groupBox2->Location = System::Drawing::Point(126, 27);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Size = System::Drawing::Size(79, 73);
@@ -269,32 +274,32 @@ namespace DataDump {
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Bit Length";
 			// 
-			// radioButton4
+			// rdo64
 			// 
-			this->radioButton4->AutoSize = true;
-			this->radioButton4->Location = System::Drawing::Point(7, 44);
-			this->radioButton4->Name = L"radioButton4";
-			this->radioButton4->Size = System::Drawing::Size(52, 17);
-			this->radioButton4->TabIndex = 1;
-			this->radioButton4->Text = L"64-Bit";
-			this->radioButton4->UseVisualStyleBackColor = true;
+			this->rdo64->AutoSize = true;
+			this->rdo64->Location = System::Drawing::Point(7, 44);
+			this->rdo64->Name = L"rdo64";
+			this->rdo64->Size = System::Drawing::Size(52, 17);
+			this->rdo64->TabIndex = 1;
+			this->rdo64->Text = L"64-Bit";
+			this->rdo64->UseVisualStyleBackColor = true;
 			// 
-			// radioButton3
+			// rdo32
 			// 
-			this->radioButton3->AutoSize = true;
-			this->radioButton3->Checked = true;
-			this->radioButton3->Location = System::Drawing::Point(7, 20);
-			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(52, 17);
-			this->radioButton3->TabIndex = 0;
-			this->radioButton3->TabStop = true;
-			this->radioButton3->Text = L"32-Bit";
-			this->radioButton3->UseVisualStyleBackColor = true;
+			this->rdo32->AutoSize = true;
+			this->rdo32->Checked = true;
+			this->rdo32->Location = System::Drawing::Point(7, 20);
+			this->rdo32->Name = L"rdo32";
+			this->rdo32->Size = System::Drawing::Size(52, 17);
+			this->rdo32->TabIndex = 0;
+			this->rdo32->TabStop = true;
+			this->rdo32->Text = L"32-Bit";
+			this->rdo32->UseVisualStyleBackColor = true;
 			// 
 			// groupBox3
 			// 
-			this->groupBox3->Controls->Add(this->radioButton6);
-			this->groupBox3->Controls->Add(this->radioButton5);
+			this->groupBox3->Controls->Add(this->rdoLE);
+			this->groupBox3->Controls->Add(this->rdoBE);
 			this->groupBox3->Location = System::Drawing::Point(211, 27);
 			this->groupBox3->Name = L"groupBox3";
 			this->groupBox3->Size = System::Drawing::Size(97, 73);
@@ -302,27 +307,27 @@ namespace DataDump {
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Endianness";
 			// 
-			// radioButton6
+			// rdoLE
 			// 
-			this->radioButton6->AutoSize = true;
-			this->radioButton6->Location = System::Drawing::Point(7, 44);
-			this->radioButton6->Name = L"radioButton6";
-			this->radioButton6->Size = System::Drawing::Size(83, 17);
-			this->radioButton6->TabIndex = 1;
-			this->radioButton6->Text = L"Little-Endian";
-			this->radioButton6->UseVisualStyleBackColor = true;
+			this->rdoLE->AutoSize = true;
+			this->rdoLE->Location = System::Drawing::Point(7, 44);
+			this->rdoLE->Name = L"rdoLE";
+			this->rdoLE->Size = System::Drawing::Size(83, 17);
+			this->rdoLE->TabIndex = 1;
+			this->rdoLE->Text = L"Little-Endian";
+			this->rdoLE->UseVisualStyleBackColor = true;
 			// 
-			// radioButton5
+			// rdoBE
 			// 
-			this->radioButton5->AutoSize = true;
-			this->radioButton5->Checked = true;
-			this->radioButton5->Location = System::Drawing::Point(7, 20);
-			this->radioButton5->Name = L"radioButton5";
-			this->radioButton5->Size = System::Drawing::Size(76, 17);
-			this->radioButton5->TabIndex = 0;
-			this->radioButton5->TabStop = true;
-			this->radioButton5->Text = L"Big-Endian";
-			this->radioButton5->UseVisualStyleBackColor = true;
+			this->rdoBE->AutoSize = true;
+			this->rdoBE->Checked = true;
+			this->rdoBE->Location = System::Drawing::Point(7, 20);
+			this->rdoBE->Name = L"rdoBE";
+			this->rdoBE->Size = System::Drawing::Size(76, 17);
+			this->rdoBE->TabIndex = 0;
+			this->rdoBE->TabStop = true;
+			this->rdoBE->Text = L"Big-Endian";
+			this->rdoBE->UseVisualStyleBackColor = true;
 			// 
 			// label1
 			// 
@@ -359,36 +364,44 @@ namespace DataDump {
 			this->cmb_epoch->Name = L"cmb_epoch";
 			this->cmb_epoch->Size = System::Drawing::Size(121, 21);
 			this->cmb_epoch->TabIndex = 10;
+			this->cmb_epoch->Enter += gcnew System::EventHandler(this, &DataDumpUI::cmb_epoch_Enter);
+			this->cmb_epoch->Leave += gcnew System::EventHandler(this, &DataDumpUI::cmb_epoch_Leave);
 			// 
-			// richTextBox1
+			// txtOffset
 			// 
-			this->richTextBox1->BackColor = System::Drawing::SystemColors::Window;
-			this->richTextBox1->Location = System::Drawing::Point(12, 124);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ReadOnly = true;
-			this->richTextBox1->Size = System::Drawing::Size(108, 312);
-			this->richTextBox1->TabIndex = 11;
-			this->richTextBox1->Text = L"";
+			this->txtOffset->BackColor = System::Drawing::SystemColors::Window;
+			this->txtOffset->Font = (gcnew System::Drawing::Font(L"Consolas", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtOffset->Location = System::Drawing::Point(12, 124);
+			this->txtOffset->Name = L"txtOffset";
+			this->txtOffset->ReadOnly = true;
+			this->txtOffset->Size = System::Drawing::Size(108, 312);
+			this->txtOffset->TabIndex = 11;
+			this->txtOffset->Text = L"";
 			// 
-			// richTextBox2
+			// txtASCII
 			// 
-			this->richTextBox2->BackColor = System::Drawing::SystemColors::Window;
-			this->richTextBox2->Location = System::Drawing::Point(540, 124);
-			this->richTextBox2->Name = L"richTextBox2";
-			this->richTextBox2->ReadOnly = true;
-			this->richTextBox2->Size = System::Drawing::Size(291, 312);
-			this->richTextBox2->TabIndex = 12;
-			this->richTextBox2->Text = L"";
+			this->txtASCII->BackColor = System::Drawing::SystemColors::Window;
+			this->txtASCII->Font = (gcnew System::Drawing::Font(L"Consolas", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtASCII->Location = System::Drawing::Point(540, 124);
+			this->txtASCII->Name = L"txtASCII";
+			this->txtASCII->ReadOnly = true;
+			this->txtASCII->Size = System::Drawing::Size(291, 312);
+			this->txtASCII->TabIndex = 12;
+			this->txtASCII->Text = L"";
 			// 
-			// richTextBox3
+			// txtData
 			// 
-			this->richTextBox3->BackColor = System::Drawing::SystemColors::Window;
-			this->richTextBox3->Location = System::Drawing::Point(127, 124);
-			this->richTextBox3->Name = L"richTextBox3";
-			this->richTextBox3->ReadOnly = true;
-			this->richTextBox3->Size = System::Drawing::Size(407, 312);
-			this->richTextBox3->TabIndex = 13;
-			this->richTextBox3->Text = L"";
+			this->txtData->BackColor = System::Drawing::SystemColors::Window;
+			this->txtData->Font = (gcnew System::Drawing::Font(L"Consolas", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtData->Location = System::Drawing::Point(127, 124);
+			this->txtData->Name = L"txtData";
+			this->txtData->ReadOnly = true;
+			this->txtData->Size = System::Drawing::Size(407, 312);
+			this->txtData->TabIndex = 13;
+			this->txtData->Text = L"";
 			// 
 			// label4
 			// 
@@ -399,25 +412,45 @@ namespace DataDump {
 			this->label4->TabIndex = 14;
 			this->label4->Text = L"Data";
 			// 
-			// button1
+			// btnStartInterpret
 			// 
-			this->button1->Location = System::Drawing::Point(317, 77);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(121, 23);
-			this->button1->TabIndex = 15;
-			this->button1->Text = L"Start Interpreter";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btnStartInterpret->Location = System::Drawing::Point(317, 77);
+			this->btnStartInterpret->Name = L"btnStartInterpret";
+			this->btnStartInterpret->Size = System::Drawing::Size(121, 23);
+			this->btnStartInterpret->TabIndex = 15;
+			this->btnStartInterpret->Text = L"Start Interpreter";
+			this->btnStartInterpret->UseVisualStyleBackColor = true;
+			this->btnStartInterpret->Click += gcnew System::EventHandler(this, &DataDumpUI::btnStartInterpret_Click);
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(441, 27);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(74, 13);
+			this->label5->TabIndex = 17;
+			this->label5->Text = L"Offset Amount";
+			// 
+			// numOffsetAmount
+			// 
+			this->numOffsetAmount->Location = System::Drawing::Point(444, 44);
+			this->numOffsetAmount->Name = L"numOffsetAmount";
+			this->numOffsetAmount->Size = System::Drawing::Size(120, 20);
+			this->numOffsetAmount->TabIndex = 18;
+			this->numOffsetAmount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 16, 0, 0, 0 });
 			// 
 			// DataDumpUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(843, 448);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->numOffsetAmount);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->btnStartInterpret);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->richTextBox3);
-			this->Controls->Add(this->richTextBox2);
-			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->txtData);
+			this->Controls->Add(this->txtASCII);
+			this->Controls->Add(this->txtOffset);
 			this->Controls->Add(this->cmb_epoch);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -439,6 +472,7 @@ namespace DataDump {
 			this->groupBox2->PerformLayout();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox3->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numOffsetAmount))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -447,7 +481,43 @@ namespace DataDump {
 	private: System::Void DataDumpUI_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
 		this->cmb_epoch->SelectedItem = this->cmb_epoch->Items[0];
+
+#define PLACEHOLDER_TEXT ":PLACEHOLDER:\n0x00000000\n1234567890\nABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#ifdef PLACEHOLDER_TEXT
+		this->txtASCII->Text = PLACEHOLDER_TEXT;
+		this->txtData->Text = PLACEHOLDER_TEXT;
+		this->txtOffset->Text = PLACEHOLDER_TEXT;
+#undef PLACEHOLDER_TEXT
+#endif
 	}
 
+private: System::Void openToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	OFDialog^ dialog = gcnew OFDialog();
+
+	if (dialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		this->filename = dialog->FileName;
+	}
+	else {
+		this->filename = "";
+	}
+
+	// MessageBox::Show(this->filename); // Verify the filename is being stored correctly
+}
+private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Application::Exit();
+}
+private: System::Void btnStartInterpret_Click(System::Object^  sender, System::EventArgs^  e) {
+	//MessageBox::Show("Started Interpreting");
+	
+}
+
+private: System::Void cmb_epoch_Enter(System::Object^  sender, System::EventArgs^  e) {
+	//MessageBox::Show("Entered!");
+	this->pasteToolStripMenuItem->Enabled = true;
+}
+private: System::Void cmb_epoch_Leave(System::Object^  sender, System::EventArgs^  e) {
+	//MessageBox::Show("Exited!");
+	this->pasteToolStripMenuItem->Enabled = false;
+}
 };
 }
